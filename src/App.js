@@ -1,25 +1,46 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import MovieItem from './components/movie/MovieItem'
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      movies:[]
+    }
+  }
+
+  componentDidMount() {
+    fetch("https://yts.am/api/v2/list_movies.json?sort_by=like_count")
+    .then(response => response.json())
+    .then(json => {
+      console.log(json.data.movies)
+      this.setState({
+        movies : json.data.movies
+      })
+    })
+    .catch(err => console.log(err))    
+  }
+
+  _renderMovies = () => {
+    const movies = this.state.movies.map((movie) => {
+      return <MovieItem
+        key={movie.id}
+        title={movie.title}
+        poster={movie.medium_cover_image}
+        genres={movie.genres}
+        synopsis={movie.synopsis}        
+      />
+    })
+    return movies
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        { //this.state.moveis ? this._renderMovies() :  "Loding"
+          this._renderMovies()
+        }
       </div>
     );
   }
