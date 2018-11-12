@@ -11,7 +11,12 @@ export function getMovie(url, callback){
   fetch("https://yts.am/api/v2/" + url)
   .then(response => response.json())
   .then(json => {
-    callback(json.data.movies)})
+    console.log(json.data.movies)
+    if (json.data.movies == undefined) {
+      callback([])
+    } else {
+      callback(json.data.movies)
+    }    
+  })
   .catch(err => console.log(err))
 }
-

@@ -1,14 +1,12 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
-
 import LinesEllipsis from 'react-lines-ellipsis'
-
 import './Movie.css';
 
 class MovieItem extends Component {
 
   render() {
-    console.log(this.props)
+    //console.log(this.props)
 
     return(
       <div className="Movie">

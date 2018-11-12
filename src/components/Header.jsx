@@ -6,39 +6,71 @@ class Header extends Component {
   constructor(props){
     super(props)
     this.state = {
-      keyword : 'xxx'
+      keyword : '',
+      genre : ''
     }    
   }
 
   inputChangeHandler = (e)=>{
     console.log(e.target.value)
     this.setState({
-      keyword:e.target.value
+      keyword : e.target.value
     })
   }
 
   clickSearchHandler = ()=>{
-    //alert("button click")
-    this.props.onSearchClick(this.state.keyword)
+    //search button click    
+    let query_string = "genre=" + this.state.genre + "&query_term='" + this.state.keyword + "'"
+    //alert("<<<search button>>>" + query_string)
+    console.log("<<<search button>>>" + query_string)
+    this.props.onSearchClick(query_string)
   }
-  
+
+  onChangListHandler = (e)=>{
+    //select list change    
+    this.setState({
+      genre : e.target.value
+    })
+  }
+
   render() {
     return (
       <div className="Header">
-        <h1>Movie-Matcher</h1>
+        <h2>Movie-Matcher</h2>
         
         <div>
-          Genres :
-          <select>
+          Genres 
+          <select onChange={this.onChangListHandler}>
             <option defaultValue="All">All</option>
             <option value="Action">Action</option>
             <option value="Adventure">Adventure</option>
+            <option value="Animation">Animation</option>
+            <option value="Biography">Biography</option>
+            <option value="Comedy">Comedy</option>
+            <option value="Crime">Crime</option>
+            <option value="Documentary">Documentary</option>
             <option value="Drama">Drama</option>
+            <option value="Family">Family</option>
+            <option value="Fantasy">Fantasy</option>
+            <option value="Film Noir">Film Noir</option>
+            <option value="History">History</option>
+            <option value="Horror">Horror</option>
+            <option value="Music">Music</option>
+            <option value="Musical">Musical</option>
+            <option value="Mystery">Mystery</option>
+            <option value="Romance">Romance</option>
+            <option value="Sci-Fi">Sci-Fi</option>
+            <option value="Short">Short</option>
+            <option value="Sport">Sport</option>
+            <option value="Superhero">Superhero</option>
+            <option value="Thriller">Thriller</option>
+            <option value="War">War</option>
+            <option value="Western">Western</option>
           </select>
                  
           <input 
             type="text"  
-            onChange={this.inputChangeHandler}        
+            onChange={this.inputChangeHandler}    
           />
           <button onClick={this.clickSearchHandler}>search</button>
         </div>

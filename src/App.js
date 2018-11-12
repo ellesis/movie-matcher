@@ -13,20 +13,18 @@ class App extends Component {
   }
   
   updateMovies = (movies) => {
-    //console.log("<<<updateMovies>>>" + movies)      
     this.setState({
       movies
     })
-    //console.log("<<<updateMovies>>>" + movies)    
   }
   
   componentDidMount() {
     service.getMovie("list_movies.json?sort_by=like_count", this.updateMovies)
   }
 
-  searchClick = (keyword) => {
+  searchClick = (query_string) => {
     //alert("search click function" + keyword)
-    let url = "list_movies.json?query_term="+keyword
+    let url = "list_movies.json?"+ query_string
     service.getMovie(url, this.updateMovies)  
   }
 
