@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import './Header.css';
-import * as service from '../services/search_post';
+import * as service from '../services/search_api';
 
 class Header extends Component {
   constructor(props){
     super(props)
     this.state = {
-      keyward : ''
+      keyword : 'xxx'
     }
     
   }
@@ -14,12 +14,13 @@ class Header extends Component {
   inputChangeHandler = (e)=>{
     console.log(e.target.value)
     this.setState({
-      keyward:e.target.value
+      keyword:e.target.value
     })
   }
 
   clickSearchHandler = ()=>{
-
+    //alert("button click")
+    this.props.onSearchClick(this.state.keyword)
   }
   
   render() {

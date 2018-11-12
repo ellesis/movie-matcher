@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import "./App.css";
 
-import * as service from './services/search_post';
+import * as service from './services/search_api';
 import MovieList from './components/movie/MovieList'
 import Header from './components/Header'
 
@@ -9,27 +9,38 @@ import Header from './components/Header'
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
+    this.state = {      
       movies:[]
     }
   }
+  
+  updateMovies = (movies) => {
+    console.log("<<<updateMovies>>>" + movies)      
+    this.setState({
+      movies
+    })
+    console.log("<<<updateMovies>>>" + movies)    
+  }
+  
 
   componentDidMount() {
-    fetch("https://yts.am/api/v2/list_movies.json?query_term=Avengers")
-    .then(response => response.json())
-    .then(json => {
-      //console.log(json.data.movies)
-      this.setState({
-        movies : json.data.movies
-      })
-    })
-    .catch(err => console.log(err))    
+    service.getMovie("list_movies.json?sort_by=rating", this.updateMovies)
+  }
+
+  searchClick = (keyword) => {
+    alert("search click function" + keyword)
+    let url = "list_movies.json?query_term="+keyword
+    service.getMovie(url, this.updateMovies)
+
+  
   }
 
   render() {
     return (
       <div className="App">
-        <Header />
+        <Header 
+          onSearchClick={this.searchClick}
+        />
         <MovieList
           movies={this.state.movies} 
         />
