@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import "./App.css";
-import MovieItem from './components/movie/MovieItem'
+
+import * as service from './services/search_post';
+import MovieList from './components/movie/MovieList'
+import Header from './components/Header'
+
 
 class App extends Component {
   constructor(props) {
@@ -11,10 +15,10 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch("https://yts.am/api/v2/list_movies.json?sort_by=like_count")
+    fetch("https://yts.am/api/v2/list_movies.json?query_term=Avengers")
     .then(response => response.json())
     .then(json => {
-      console.log(json.data.movies)
+      //console.log(json.data.movies)
       this.setState({
         movies : json.data.movies
       })
@@ -22,25 +26,14 @@ class App extends Component {
     .catch(err => console.log(err))    
   }
 
-  _renderMovies = () => {
-    const movies = this.state.movies.map((movie) => {
-      return <MovieItem
-        key={movie.id}
-        title={movie.title}
-        poster={movie.medium_cover_image}
-        genres={movie.genres}
-        synopsis={movie.synopsis}        
-      />
-    })
-    return movies
-  }
-
   render() {
     return (
       <div className="App">
-        { //this.state.moveis ? this._renderMovies() :  "Loding"
-          this._renderMovies()
-        }
+        <Header />
+        <MovieList
+          movies={this.state.movies} 
+        />
+        
       </div>
     );
   }

@@ -23,7 +23,7 @@ class MovieItem extends Component {
           <div className="Movie-synopsis">            
             <LinesEllipsis
               text={this.props.synopsis}
-              maxLine='3'
+              maxLine='5'
               ellipsis='...'
               trimRight
               basedOn='letters'
