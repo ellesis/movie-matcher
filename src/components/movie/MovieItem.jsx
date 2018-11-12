@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import LinesEllipsis from 'react-lines-ellipsis'
 
-import './MovieItem.css';
+import './Movie.css';
 
 class MovieItem extends Component {
 

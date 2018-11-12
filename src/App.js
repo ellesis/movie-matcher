@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import "./App.css";
-
 import * as service from './services/search_api';
 import MovieList from './components/movie/MovieList'
 import Header from './components/Header'
-
 
 class App extends Component {
   constructor(props) {
@@ -15,24 +13,21 @@ class App extends Component {
   }
   
   updateMovies = (movies) => {
-    console.log("<<<updateMovies>>>" + movies)      
+    //console.log("<<<updateMovies>>>" + movies)      
     this.setState({
       movies
     })
-    console.log("<<<updateMovies>>>" + movies)    
+    //console.log("<<<updateMovies>>>" + movies)    
   }
   
-
   componentDidMount() {
-    service.getMovie("list_movies.json?sort_by=rating", this.updateMovies)
+    service.getMovie("list_movies.json?sort_by=like_count", this.updateMovies)
   }
 
   searchClick = (keyword) => {
-    alert("search click function" + keyword)
+    //alert("search click function" + keyword)
     let url = "list_movies.json?query_term="+keyword
-    service.getMovie(url, this.updateMovies)
-
-  
+    service.getMovie(url, this.updateMovies)  
   }
 
   render() {

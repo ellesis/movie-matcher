@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import MovieItem from './MovieItem'
-import './MovieItem.css';
+import './Movie.css';
 
 class MovieList extends Component {
   render() {
     const movies = this.props.movies.map((movie) => {
-      return <MovieItem 
+      return <MovieItem
         key={movie.id}
         title={movie.title}
         poster={movie.medium_cover_image}
@@ -15,7 +15,7 @@ class MovieList extends Component {
     })
 
     return (
-      <div>
+      <div className="MovieList">
         {movies}
       </div>
     );

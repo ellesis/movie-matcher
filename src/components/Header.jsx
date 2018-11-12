@@ -7,8 +7,7 @@ class Header extends Component {
     super(props)
     this.state = {
       keyword : 'xxx'
-    }
-    
+    }    
   }
 
   inputChangeHandler = (e)=>{
@@ -27,20 +26,23 @@ class Header extends Component {
     return (
       <div className="Header">
         <h1>Movie-Matcher</h1>
-        Genres :
-        <select>
-          <option defaultValue="All">All</option>
-          <option value="Action">Action</option>
-          <option value="Adventure">Adventure</option>
-          <option value="Drama">Drama</option>
-        </select>
-       
-        search
-        <input 
-          type="text"  
-          onChange={this.inputChangeHandler}        
-        />       
-        <button onClick={this.clickSearchHandler}>search</button>
+        
+        <div>
+          Genres :
+          <select>
+            <option defaultValue="All">All</option>
+            <option value="Action">Action</option>
+            <option value="Adventure">Adventure</option>
+            <option value="Drama">Drama</option>
+          </select>
+                 
+          <input 
+            type="text"  
+            onChange={this.inputChangeHandler}        
+          />
+          <button onClick={this.clickSearchHandler}>search</button>
+        </div>
+        
       </div>
     );
   }
