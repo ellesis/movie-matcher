@@ -12,7 +12,7 @@ export function getMovie(url, callback){
   .then(response => response.json())
   .then(json => {
     console.log(json.data.movies)
-    if (json.data.movies == undefined) {
+    if (json.data.movies === undefined) {
       callback([])
     } else {
       callback(json.data.movies)

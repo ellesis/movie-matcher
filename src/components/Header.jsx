@@ -7,7 +7,7 @@ class Header extends Component {
     super(props)
     this.state = {
       keyword : '',
-      genre : ''
+      genre : 'all'
     }    
   }
 
@@ -21,9 +21,15 @@ class Header extends Component {
   clickSearchHandler = ()=>{
     //search button click    
     let query_string = "genre=" + this.state.genre + "&query_term='" + this.state.keyword + "'"
-    //alert("<<<search button>>>" + query_string)
-    console.log("<<<search button>>>" + query_string)
     this.props.onSearchClick(query_string)
+  }
+
+  keyPressHandler = (e)=>{
+    // Enter key press on textbox
+    if(e.keyCode === 13){
+      let query_string = "genre=" + this.state.genre + "&query_term='" + this.state.keyword + "'"
+      this.props.onSearchClick(query_string)      
+    }
   }
 
   onChangListHandler = (e)=>{
@@ -70,7 +76,8 @@ class Header extends Component {
                  
           <input 
             type="text"  
-            onChange={this.inputChangeHandler}    
+            onChange={this.inputChangeHandler}
+            onKeyDown={this.keyPressHandler}    
           />
           <button onClick={this.clickSearchHandler}>search</button>
         </div>

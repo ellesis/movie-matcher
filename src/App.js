@@ -36,8 +36,7 @@ class App extends Component {
         />
         <MovieList
           movies={this.state.movies} 
-        />
-        
+        />        
       </div>
     );
   }
