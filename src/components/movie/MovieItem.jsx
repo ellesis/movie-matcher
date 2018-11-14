@@ -7,7 +7,6 @@ class MovieItem extends Component {
 
   render() {
     //console.log(this.props)
-
     return(
       <div className="Movie">
         <div className="Movie-column">
@@ -15,6 +14,7 @@ class MovieItem extends Component {
         </div>
         <div className="Movie-column">
           <h1>{this.props.title}</h1>
+          <p>{this.props.year}</p>
           <div className="Movie-genres">
             {this.props.genres.map((genre, index) => <MovieGenre genre={genre} key={index} />)}
           </div>

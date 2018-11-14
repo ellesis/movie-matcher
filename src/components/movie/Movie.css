@@ -1,4 +1,4 @@
-.MovieList {
+.Movie-list {
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -6,7 +6,17 @@
   flex-wrap: wrap;
   margin-bottom: 50px;
   text-overflow: ellipsis;
-  padding: 0 20px;
+}
+
+.Movie-count {
+  width: 100%;
+  display: flex;
+  background-color: white;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  padding: 0 5px;
+  margin-bottom: 30px;
 }
 
 .Movie {
